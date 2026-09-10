@@ -42,11 +42,128 @@
 @media(max-width:760px){.hero-kids-framed{height:465px;width:355px;right:50%;bottom:20px;object-fit:cover;object-position:center 45%;border-width:7px;border-radius:46% 46% 22px 22px;transform:translateX(50%)}}
 @media(max-width:430px){.hero-kids-framed{height:410px;width:315px}}
 
-.round-stamp strong{width:100%;place-items:center;transform:none;white-space:nowrap}
-.round-stamp strong small{display:block;white-space:nowrap;text-align:center}
+.round-stamp strong{width:100%;place-items:center;transform:translateX(-8px);white-space:nowrap;font-size:.98rem}
+.round-stamp strong small{display:block;white-space:nowrap;text-align:center;font-size:.58rem}
 .round-stamp span{animation:spin 8s linear infinite}
 @media(prefers-reduced-motion:reduce){.round-stamp span{animation:none}}
+@media(max-width:760px){.round-stamp strong{transform:translateX(-6px);font-size:.8rem}.round-stamp strong small{font-size:.48rem}}
 
 /* Highlight the card that matches the current activity image. */
 .activity-card.is-active{z-index:2;transform:translateX(-7px);box-shadow:0 0 0 4px #fff,0 0 0 8px var(--navy),0 18px 34px rgba(7,52,95,.2)}
 @media(max-width:1000px){.activity-card.is-active{transform:translateY(-5px)}}
+
+/* Meet the Team carousel */
+.team-section{position:relative;overflow:hidden;background:linear-gradient(145deg,#f2f8ff 0%,#fff 48%,#fff8dc 100%);padding-block:110px 95px}
+.team-section .wrap{position:relative;z-index:2}
+.team-heading{display:grid;grid-template-columns:1fr .7fr;gap:70px;align-items:end}
+.team-heading h2 em{color:var(--blue)}
+.team-heading>p{max-width:470px;margin:0 0 8px;color:var(--muted);font-size:1rem;line-height:1.7}
+.team-shape{position:absolute;border-radius:50%;pointer-events:none}
+.team-shape-one{width:320px;height:320px;left:-170px;top:100px;border:3px dashed rgba(18,130,205,.22);animation:spin 30s linear infinite}
+.team-shape-two{width:210px;height:210px;right:-85px;bottom:20px;background:rgba(255,217,41,.28)}
+.team-carousel{position:relative;max-width:1120px;margin:48px auto 0}
+.team-stage{position:relative;height:510px;perspective:1000px;touch-action:pan-y}
+.team-card{position:absolute;left:50%;top:50%;width:300px;height:400px;overflow:hidden;border:7px solid #fff;border-radius:30px;background:var(--navy);opacity:0;transform:translate(-50%,-50%) scale(.55);box-shadow:0 22px 50px rgba(7,52,95,.18);transition:transform .75s cubic-bezier(.2,.75,.2,1),opacity .45s,filter .45s;pointer-events:none;will-change:transform}
+.team-card img{width:100%;height:100%;object-fit:cover;transition:transform 5s ease}
+.team-card:before{content:"";position:absolute;z-index:1;inset:38% 0 0;background:linear-gradient(transparent,rgba(7,35,66,.9))}
+.team-card.is-active{z-index:3;opacity:1;transform:translate(-50%,-50%) scale(1.08);pointer-events:auto;box-shadow:0 0 0 5px var(--yellow),0 32px 70px rgba(7,52,95,.26)}
+.team-card.is-prev{z-index:2;opacity:.76;transform:translate(calc(-50% - 340px),-50%) scale(.79) rotate(-3deg);filter:saturate(.82);pointer-events:auto;cursor:pointer}
+.team-card.is-next{z-index:2;opacity:.76;transform:translate(calc(-50% + 340px),-50%) scale(.79) rotate(3deg);filter:saturate(.82);pointer-events:auto;cursor:pointer}
+.team-card.is-active:hover img{transform:scale(1.045)}
+.team-card-copy{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:55px 22px 22px;color:#fff}
+.team-card-copy small{display:block;margin-bottom:4px;color:var(--yellow);font-size:.65rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.team-card-copy h3{margin:0;font:700 1.55rem/1.05 "Fredoka",sans-serif}
+.team-card.is-active .team-card-copy h3{font-size:1.85rem}
+.team-featured{position:absolute;z-index:3;left:16px;top:16px;padding:8px 11px;border-radius:999px;background:var(--yellow);color:var(--navy);font-size:.6rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.team-arrow{position:absolute;z-index:5;top:46%;width:52px;height:52px;border:0;border-radius:50%;background:var(--navy);color:#fff;font-size:1.35rem;cursor:pointer;box-shadow:0 12px 30px rgba(7,52,95,.2);transition:transform .25s,background .25s}
+.team-arrow:hover,.team-arrow:focus-visible{background:var(--blue);transform:scale(1.08)}
+.team-arrow:focus-visible{outline:4px solid var(--yellow);outline-offset:3px}
+.team-prev{left:8px}.team-next{right:8px}
+.team-dots{display:flex;justify-content:center;gap:9px;margin-top:5px}
+.team-dots button{width:10px;height:10px;padding:0;border:0;border-radius:999px;background:rgba(7,52,95,.25);cursor:pointer;transition:width .25s,background .25s}
+.team-dots button.is-active{width:32px;background:var(--blue)}
+.team-note{text-align:center;margin:14px 0 0;color:var(--muted);font-size:.72rem;font-weight:700}
+@media(max-width:900px){
+  .team-card.is-prev{transform:translate(calc(-50% - 245px),-50%) scale(.7) rotate(-3deg)}
+  .team-card.is-next{transform:translate(calc(-50% + 245px),-50%) scale(.7) rotate(3deg)}
+  .team-prev{left:0}.team-next{right:0}
+}
+@media(max-width:760px){
+  .team-section{padding-block:82px 75px}
+  .team-heading{grid-template-columns:1fr;gap:15px;text-align:center}
+  .team-heading>p{margin-inline:auto;font-size:.92rem}
+  .team-stage{height:440px}
+  .team-card{width:255px;height:350px;border-width:6px;border-radius:25px}
+  .team-card.is-active{transform:translate(-50%,-50%) scale(1.04)}
+  .team-card.is-prev{transform:translate(calc(-50% - 180px),-50%) scale(.62) rotate(-3deg)}
+  .team-card.is-next{transform:translate(calc(-50% + 180px),-50%) scale(.62) rotate(3deg)}
+  .team-arrow{top:auto;bottom:-2px;width:46px;height:46px}
+  .team-prev{left:calc(50% - 92px)}.team-next{right:calc(50% - 92px)}
+  .team-dots{margin-top:10px}
+}
+@media(max-width:430px){
+  .team-stage{height:405px}
+  .team-card{width:230px;height:325px}
+  .team-card.is-prev{transform:translate(calc(-50% - 145px),-50%) scale(.56) rotate(-3deg)}
+  .team-card.is-next{transform:translate(calc(-50% + 145px),-50%) scale(.56) rotate(3deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  .team-shape-one{animation:none}.team-card,.team-card img{transition:none}
+}
+
+/* Live Facebook news */
+.facebook-news{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding-bottom:0}
+.facebook-news-grid{position:relative;z-index:2;display:grid;grid-template-columns:.82fr 1.18fr;gap:90px;align-items:center;padding-bottom:105px}
+.facebook-news-copy{position:relative}
+.facebook-news-copy h2{color:#fff;font-size:clamp(3.4rem,5.7vw,5.7rem)}
+.facebook-news-copy h2 em{color:var(--yellow)}
+.facebook-news-copy>p:not(.section-tag):not(.news-live){max-width:540px;margin:26px 0;color:rgba(255,255,255,.7);font-size:1rem;line-height:1.75}
+.news-live{display:inline-flex;align-items:center;gap:9px;margin:0 0 25px;padding:8px 12px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.news-live span,.feed-status i{width:8px;height:8px;border-radius:50%;background:#60dc93;box-shadow:0 0 0 5px rgba(96,220,147,.14);animation:pulseLive 1.8s ease-in-out infinite}
+.news-topics{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}
+.news-topics span{padding:8px 12px;border-radius:10px;background:rgba(87,201,220,.13);border:1px solid rgba(87,201,220,.22);color:#d7f8ff;font-size:.68rem;font-weight:900}
+.news-button{background:var(--yellow);color:var(--navy)}
+.facebook-feed-card{position:relative;max-width:580px;margin-left:auto;padding:16px;border-radius:34px;background:#fff;color:var(--ink);box-shadow:0 35px 85px rgba(0,0,0,.28);transform:rotate(1deg)}
+.facebook-feed-card:before{content:"";position:absolute;z-index:-1;inset:-13px 24px 18px -17px;border:2px dashed rgba(255,217,41,.8);border-radius:38px;transform:rotate(-2deg)}
+.facebook-feed-head{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:center;padding:7px 6px 16px}
+.facebook-mark{width:42px;height:42px;border-radius:13px;background:#1877f2;color:#fff;display:grid;place-items:center;font:800 1.65rem/1 Arial,sans-serif}
+.facebook-feed-head>div{display:grid;line-height:1.2}
+.facebook-feed-head small{color:var(--muted);font-size:.58rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.facebook-feed-head strong{font:700 1rem "Fredoka",sans-serif;color:var(--navy)}
+.feed-status{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.62rem;font-weight:900;text-transform:uppercase}
+.feed-status i{display:inline-block;width:7px;height:7px;box-shadow:none}
+.facebook-feed-frame{position:relative;min-height:650px;overflow:hidden;border-radius:22px;background:linear-gradient(135deg,#eef5fb,#fff8e8)}
+.facebook-feed-frame iframe{display:block;width:100%;max-width:500px;min-height:650px;margin-inline:auto;border:0}
+.facebook-feed-card>p{margin:13px 8px 3px;color:var(--muted);text-align:center;font-size:.68rem}
+.facebook-feed-card>p a{color:var(--blue);font-weight:900}
+.news-orbit{position:absolute;border-radius:50%;pointer-events:none}
+.news-orbit-one{width:390px;height:390px;left:-205px;bottom:30px;border:2px dashed rgba(255,255,255,.14);animation:spin 32s linear infinite}
+.news-orbit-two{width:260px;height:260px;right:-105px;top:50px;background:rgba(8,111,194,.25)}
+.news-ticker{position:relative;z-index:2;overflow:hidden;background:var(--yellow);color:var(--navy);padding:18px 0;transform:rotate(-1deg);width:102%;margin-left:-1%}
+.news-ticker>div{display:flex;width:max-content;animation:marquee 26s linear infinite}
+.news-ticker span{padding-right:25px;white-space:nowrap;font:700 1rem "Fredoka",sans-serif;letter-spacing:.06em}
+@keyframes pulseLive{50%{opacity:.55;transform:scale(.78)}}
+@media(max-width:1000px){
+  .facebook-news-grid{grid-template-columns:1fr 1fr;gap:45px}
+  .facebook-feed-card{max-width:530px}
+}
+@media(max-width:760px){
+  .facebook-news-grid{grid-template-columns:1fr;gap:50px;padding-bottom:75px}
+  .facebook-news-copy{text-align:center}
+  .facebook-news-copy>p:not(.section-tag):not(.news-live){margin-inline:auto}
+  .news-topics{justify-content:center}
+  .facebook-feed-card{width:100%;max-width:530px;margin-inline:auto;padding:11px;border-radius:26px;transform:none}
+  .facebook-feed-card:before{inset:-10px 15px 14px -10px;border-radius:30px}
+  .facebook-feed-frame{min-height:610px}
+  .facebook-feed-frame iframe{height:610px;min-height:610px}
+}
+@media(max-width:430px){
+  .facebook-news-copy h2{font-size:3rem}
+  .facebook-feed-head{grid-template-columns:auto 1fr}
+  .feed-status{grid-column:2}
+  .facebook-feed-frame{min-height:570px}
+  .facebook-feed-frame iframe{height:570px;min-height:570px}
+}
+@media(prefers-reduced-motion:reduce){
+  .news-live span,.feed-status i,.news-orbit-one,.news-ticker>div{animation:none}
+}

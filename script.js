@@ -218,4 +218,74 @@ activityTriggers.forEach(trigger => {
 showActivitySequenceStep(0);
 startActivityRotation();
 
+const teamCarousel = document.querySelector('.team-carousel');
+const teamStage = document.querySelector('.team-stage');
+const teamCards = [...document.querySelectorAll('.team-card')];
+const teamDots = [...document.querySelectorAll('.team-dots button')];
+const teamPrev = document.querySelector('.team-prev');
+const teamNext = document.querySelector('.team-next');
+let teamIndex = 0;
+let teamTimer;
+let teamPointerStart = 0;
+const teamReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function showTeamMember(index) {
+  if (!teamCards.length) return;
+  teamIndex = (index + teamCards.length) % teamCards.length;
+  teamCards.forEach((card, cardIndex) => {
+    const position = (cardIndex - teamIndex + teamCards.length) % teamCards.length;
+    card.classList.toggle('is-active', position === 0);
+    card.classList.toggle('is-next', position === 1);
+    card.classList.toggle('is-prev', position === teamCards.length - 1);
+    card.setAttribute('aria-current', String(position === 0));
+  });
+  teamDots.forEach((dot, dotIndex) => {
+    const selected = dotIndex === teamIndex;
+    dot.classList.toggle('is-active', selected);
+    dot.setAttribute('aria-pressed', String(selected));
+  });
+}
+
+function startTeamCarousel() {
+  clearInterval(teamTimer);
+  if (!teamReducedMotion && teamCards.length > 1) {
+    teamTimer = setInterval(() => showTeamMember(teamIndex + 1), 5000);
+  }
+}
+
+function selectTeamMember(index) {
+  showTeamMember(index);
+  startTeamCarousel();
+}
+
+teamPrev?.addEventListener('click', () => selectTeamMember(teamIndex - 1));
+teamNext?.addEventListener('click', () => selectTeamMember(teamIndex + 1));
+teamDots.forEach((dot, index) => dot.addEventListener('click', () => selectTeamMember(index)));
+teamCards.forEach((card, index) => {
+  card.addEventListener('click', () => {
+    if (index !== teamIndex) selectTeamMember(index);
+  });
+  card.addEventListener('keydown', event => {
+    if ((event.key === 'Enter' || event.key === ' ') && index !== teamIndex) {
+      event.preventDefault();
+      selectTeamMember(index);
+    }
+  });
+});
+teamCarousel?.addEventListener('mouseenter', () => clearInterval(teamTimer));
+teamCarousel?.addEventListener('mouseleave', startTeamCarousel);
+teamCarousel?.addEventListener('focusin', () => clearInterval(teamTimer));
+teamCarousel?.addEventListener('focusout', event => {
+  if (!teamCarousel.contains(event.relatedTarget)) startTeamCarousel();
+});
+teamStage?.addEventListener('pointerdown', event => {
+  teamPointerStart = event.clientX;
+});
+teamStage?.addEventListener('pointerup', event => {
+  const distance = event.clientX - teamPointerStart;
+  if (Math.abs(distance) > 45) selectTeamMember(teamIndex + (distance < 0 ? 1 : -1));
+});
+showTeamMember(0);
+startTeamCarousel();
+
 document.getElementById('year').textContent = new Date().getFullYear();
