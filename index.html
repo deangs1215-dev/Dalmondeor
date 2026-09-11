@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -18,7 +18,7 @@
 
   <header class="header" id="top">
     <div class="wrap header-inner">
-      <a class="logo" href="#top" aria-label="Laerskool Dalmondeor home"><img src="assets/dalmondeor-logo-v3.png" alt="Laerskool Dalmondeor crest" width="1254" height="1254"><span><strong>Laerskool</strong><small>Dalmondeor</small></span></a>
+      <a class="logo" href="#top" aria-label="Laerskool Dalmondeor home"><img src="assets/dalmondeor-logo-v3.png" alt="Laerskool Dalmondeor crest" width="1254" height="1254"><span><span class="logo-school-type">Laerskool</span><span class="logo-school-name">Dalmondeor</span></span></a>
       <nav class="nav" id="nav" aria-label="Main navigation"><a class="active" href="#top">Home</a><a href="#about">Our school</a><a href="#learning">Learning</a><a href="#activities">Activities</a><a href="#parents">Parents</a><a href="#contact">Contact</a></nav>
       <a class="header-cta" href="#admissions">Admissions <span>↗</span></a>
       <button class="menu-button" type="button" aria-label="Open navigation" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -124,6 +124,20 @@
       </div>
     </div></section>
 
+    <section class="section campus-film" id="campus-video" aria-labelledby="campus-video-title">
+      <div class="wrap">
+        <div class="campus-film-heading reveal"><div><p class="section-tag">A view from above</p><h2 id="campus-video-title">See our school<br><em>from a new angle.</em></h2></div><p>Take a sweeping look across the place where Dallies learn, play and grow together.</p></div>
+        <div class="campus-video-frame reveal">
+          <span class="campus-video-tag"><i aria-hidden="true"></i> Dalmondeor drone tour • 2026</span>
+          <video class="campus-video-player" autoplay muted loop playsinline controls preload="metadata" aria-label="Aerial drone video of Laerskool Dalmondeor">
+            <source src="assets/dalmondeor-drone-2026.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="assets/dalmondeor-drone-2026.mp4">Open the drone video</a>.
+          </video>
+          <div class="campus-video-caption"><span>Our campus</span><strong>Where bright futures take flight.</strong></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section facebook-news" id="news" aria-labelledby="news-title">
       <span class="news-orbit news-orbit-one" aria-hidden="true"></span><span class="news-orbit news-orbit-two" aria-hidden="true"></span>
       <div class="wrap facebook-news-grid">
@@ -173,6 +187,6 @@
   </main>
 
   <footer class="footer"><div class="wrap footer-main"><div class="footer-name"><span>DALMONDEOR</span><p>Ons is die toekoms.<br>We are the future.</p></div><div class="footer-nav"><a href="#about">Our school</a><a href="#learning">Learning</a><a href="#activities">Activities</a><a href="#admissions">Admissions</a></div><a class="back-top" href="#top" aria-label="Back to top">↑</a></div><div class="wrap footer-bottom"><p>© <span id="year"></span> Laerskool Dalmondeor Primary</p><p>Mondeor • Johannesburg South</p></div></footer>
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

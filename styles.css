@@ -167,3 +167,49 @@
 @media(prefers-reduced-motion:reduce){
   .news-live span,.feed-status i,.news-orbit-one,.news-ticker>div{animation:none}
 }
+
+/* Header wordmark hierarchy: school type above the larger school name. */
+.logo>span{display:grid;align-content:center;line-height:1}
+.logo-school-type,.logo-school-name{display:block;text-transform:uppercase}
+.logo-school-type{color:var(--blue);font:900 .59rem/1 "Nunito",sans-serif;letter-spacing:.16em}
+.logo-school-name{margin-top:6px;color:var(--navy);font:700 1.4rem/1 "Fredoka",sans-serif;letter-spacing:.04em}
+@media(max-width:1000px){
+  .logo-school-type{font-size:.49rem}
+  .logo-school-name{font-size:1.18rem}
+}
+@media(max-width:760px){
+  .logo-school-type{font-size:.45rem}
+  .logo-school-name{font-size:1.08rem}
+}
+
+/* Wide looping campus film */
+.campus-film{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);padding-block:110px}
+.campus-film:before{content:"";position:absolute;width:290px;height:290px;right:-125px;top:70px;border:3px dashed rgba(8,111,194,.2);border-radius:50%;animation:spin 28s linear infinite}
+.campus-film-heading{display:grid;grid-template-columns:1fr .72fr;gap:70px;align-items:end;margin-bottom:45px}
+.campus-film-heading h2 em{color:var(--coral)}
+.campus-film-heading>p{max-width:490px;margin:0 0 8px;color:var(--muted);font-size:1rem;line-height:1.7}
+.campus-video-frame{position:relative;padding:9px;aspect-ratio:16/9;border-radius:38px;background:#fff;box-shadow:0 30px 80px rgba(7,52,95,.22)}
+.campus-video-frame:before{content:"";position:absolute;z-index:-1;inset:-16px 25px 19px -17px;border:3px dashed var(--yellow);border-radius:44px;transform:rotate(-1.2deg)}
+.campus-video-player{display:block;width:100%;height:100%;object-fit:cover;border-radius:30px;background:var(--navy)}
+.campus-video-tag{position:absolute;z-index:3;left:30px;top:29px;display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:999px;background:rgba(7,52,95,.82);backdrop-filter:blur(9px);color:#fff;font-size:.66rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;pointer-events:none}
+.campus-video-tag i{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 5px rgba(255,217,41,.17);animation:pulseLive 1.8s ease-in-out infinite}
+.campus-video-caption{position:absolute;z-index:2;left:32px;bottom:62px;display:grid;padding:14px 17px;border-left:4px solid var(--yellow);border-radius:0 13px 13px 0;background:rgba(7,52,95,.75);backdrop-filter:blur(8px);color:#fff;pointer-events:none}
+.campus-video-caption span{color:var(--yellow);font-size:.6rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.campus-video-caption strong{font:700 1.25rem "Fredoka",sans-serif}
+@media(max-width:760px){
+  .campus-film{padding-block:82px}
+  .campus-film-heading{grid-template-columns:1fr;gap:15px;text-align:center;margin-bottom:35px}
+  .campus-film-heading>p{margin-inline:auto;font-size:.92rem}
+  .campus-video-frame{padding:6px;border-radius:25px}
+  .campus-video-player{border-radius:20px}
+  .campus-video-tag{left:17px;top:16px;padding:7px 9px;font-size:.52rem}
+  .campus-video-caption{left:18px;bottom:48px;padding:9px 11px}
+  .campus-video-caption strong{font-size:.9rem}
+}
+@media(max-width:430px){
+  .campus-video-caption{display:none}
+  .campus-video-tag{max-width:calc(100% - 34px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+@media(prefers-reduced-motion:reduce){
+  .campus-film:before,.campus-video-tag i{animation:none}
+}

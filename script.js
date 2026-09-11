@@ -227,6 +227,8 @@ const teamNext = document.querySelector('.team-next');
 let teamIndex = 0;
 let teamTimer;
 let teamPointerStart = 0;
+let teamInView = false;
+let teamStarted = false;
 const teamReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function showTeamMember(index) {
@@ -248,7 +250,7 @@ function showTeamMember(index) {
 
 function startTeamCarousel() {
   clearInterval(teamTimer);
-  if (!teamReducedMotion && teamCards.length > 1) {
+  if (teamInView && !teamReducedMotion && teamCards.length > 1) {
     teamTimer = setInterval(() => showTeamMember(teamIndex + 1), 5000);
   }
 }
@@ -286,6 +288,20 @@ teamStage?.addEventListener('pointerup', event => {
   if (Math.abs(distance) > 45) selectTeamMember(teamIndex + (distance < 0 ? 1 : -1));
 });
 showTeamMember(0);
-startTeamCarousel();
+if (teamCarousel) {
+  const teamObserver = new IntersectionObserver(entries => {
+    teamInView = entries[0].isIntersecting;
+    if (teamInView) {
+      if (!teamStarted) {
+        showTeamMember(0);
+        teamStarted = true;
+      }
+      startTeamCarousel();
+    } else {
+      clearInterval(teamTimer);
+    }
+  }, { threshold: .35 });
+  teamObserver.observe(teamCarousel);
+}
 
 document.getElementById('year').textContent = new Date().getFullYear();
