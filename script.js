@@ -304,4 +304,28 @@ if (teamCarousel) {
   teamObserver.observe(teamCarousel);
 }
 
+const campusVideo = document.querySelector('.campus-video-player');
+const campusVideoFrame = document.querySelector('.campus-video-frame');
+const campusSoundStart = document.querySelector('.campus-sound-start');
+
+async function playCampusVideoWithSound() {
+  if (!campusVideo) return;
+  campusVideo.muted = false;
+  campusVideo.defaultMuted = false;
+  try {
+    await campusVideo.play();
+    campusVideoFrame?.classList.remove('needs-sound-start');
+  } catch {
+    campusVideoFrame?.classList.add('needs-sound-start');
+  }
+}
+
+if (campusVideo) {
+  campusVideo.muted = false;
+  campusVideo.defaultMuted = false;
+  campusVideo.addEventListener('playing', () => campusVideoFrame?.classList.remove('needs-sound-start'));
+  playCampusVideoWithSound();
+}
+campusSoundStart?.addEventListener('click', playCampusVideoWithSound);
+
 document.getElementById('year').textContent = new Date().getFullYear();

@@ -191,6 +191,10 @@
 .campus-video-frame{position:relative;padding:9px;aspect-ratio:16/9;border-radius:38px;background:#fff;box-shadow:0 30px 80px rgba(7,52,95,.22)}
 .campus-video-frame:before{content:"";position:absolute;z-index:-1;inset:-16px 25px 19px -17px;border:3px dashed var(--yellow);border-radius:44px;transform:rotate(-1.2deg)}
 .campus-video-player{display:block;width:100%;height:100%;object-fit:cover;border-radius:30px;background:var(--navy)}
+.campus-sound-start{position:absolute;z-index:4;inset:50% auto auto 50%;display:none;align-items:center;gap:12px;padding:14px 20px;border:0;border-radius:999px;background:var(--yellow);color:var(--navy);box-shadow:0 15px 35px rgba(7,52,95,.28);font:700 .95rem "Fredoka",sans-serif;cursor:pointer;transform:translate(-50%,-50%);transition:transform .2s ease,box-shadow .2s ease}
+.campus-sound-start span{display:grid;width:32px;height:32px;place-items:center;padding-left:2px;border-radius:50%;background:var(--navy);color:#fff;font-size:.72rem}
+.campus-video-frame.needs-sound-start .campus-sound-start{display:flex}
+.campus-sound-start:hover,.campus-sound-start:focus-visible{transform:translate(-50%,-50%) scale(1.05);box-shadow:0 18px 42px rgba(7,52,95,.36)}
 .campus-video-tag{position:absolute;z-index:3;left:30px;top:29px;display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:999px;background:rgba(7,52,95,.82);backdrop-filter:blur(9px);color:#fff;font-size:.66rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;pointer-events:none}
 .campus-video-tag i{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 5px rgba(255,217,41,.17);animation:pulseLive 1.8s ease-in-out infinite}
 .campus-video-caption{position:absolute;z-index:2;left:32px;bottom:62px;display:grid;padding:14px 17px;border-left:4px solid var(--yellow);border-radius:0 13px 13px 0;background:rgba(7,52,95,.75);backdrop-filter:blur(8px);color:#fff;pointer-events:none}
@@ -202,6 +206,8 @@
   .campus-film-heading>p{margin-inline:auto;font-size:.92rem}
   .campus-video-frame{padding:6px;border-radius:25px}
   .campus-video-player{border-radius:20px}
+  .campus-sound-start{padding:10px 14px;font-size:.8rem}
+  .campus-sound-start span{width:27px;height:27px}
   .campus-video-tag{left:17px;top:16px;padding:7px 9px;font-size:.52rem}
   .campus-video-caption{left:18px;bottom:48px;padding:9px 11px}
   .campus-video-caption strong{font-size:.9rem}
