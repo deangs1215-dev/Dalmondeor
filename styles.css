@@ -308,3 +308,39 @@
 @media(max-width:760px){.about-image-dots{bottom:17px;padding:7px 9px}}
 @media(prefers-reduced-motion:reduce){.image-squircle .about-image-slide{transition:none;transform:none}.image-squircle .about-image-slide--robotics.is-active{transform:scale(1.08)}}
 .why-accordion details p{font-size:.9rem;line-height:1.65;padding-bottom:22px}
+
+/* Interactive contact hub */
+.contact{position:relative;overflow:hidden;background:linear-gradient(145deg,#fff 0%,#f3f9fb 100%)}
+.contact-grid{position:relative;z-index:2;grid-template-columns:.68fr 1.32fr;gap:85px}
+.contact-copy h2 em{color:var(--coral)}
+.contact-copy>p:not(.section-tag){max-width:430px;font-size:1rem;line-height:1.7}
+.contact-pulse{display:flex;align-items:center;gap:12px;margin-top:30px;color:var(--navy);font-size:.72rem;letter-spacing:.04em}
+.contact-pulse>span{width:12px;height:12px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 8px rgba(86,199,169,.16);animation:pulseLive 1.8s ease-in-out infinite}
+.contact-orbit{position:absolute;border-radius:50%;pointer-events:none}
+.contact-orbit-one{width:360px;height:360px;left:-180px;bottom:-165px;border:2px dashed rgba(8,111,194,.18);animation:spin 30s linear infinite}
+.contact-orbit-two{width:210px;height:210px;right:-90px;top:45px;background:rgba(255,217,41,.2)}
+.contact-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;perspective:1200px}
+.contact-links .contact-card{--tilt-x:0deg;--tilt-y:0deg;--glow-x:50%;--glow-y:50%;position:relative;display:grid;min-height:245px;grid-template-columns:auto 1fr auto;grid-template-rows:auto 1fr;gap:16px 18px;align-items:start;overflow:hidden;padding:27px;border:0;border-radius:28px;isolation:isolate;box-shadow:0 20px 45px rgba(7,52,95,.14);transform:rotateX(var(--tilt-x)) rotateY(var(--tilt-y));transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease}
+.contact-links .contact-card:before{content:"";position:absolute;z-index:-2;inset:0;background:radial-gradient(circle at var(--glow-x) var(--glow-y),rgba(255,255,255,.38),transparent 38%);opacity:.55;transition:opacity .25s}
+.contact-links .contact-card:after{content:"";position:absolute;z-index:-1;width:150px;height:150px;right:-65px;bottom:-72px;border:2px dashed currentColor;border-radius:50%;opacity:.2;transition:transform .5s ease}
+.contact-links .contact-card:hover,.contact-links .contact-card:focus-visible{padding-left:27px;box-shadow:0 28px 60px rgba(7,52,95,.23);outline:none}
+.contact-links .contact-card:hover:after,.contact-links .contact-card:focus-visible:after{transform:rotate(35deg) scale(1.14)}
+.contact-card-call{background:var(--navy);color:#fff}
+.contact-card-map{background:var(--yellow);color:var(--navy)}
+.contact-card-social{grid-column:1/-1;min-height:205px;background:var(--blue);color:#fff}
+.contact-links .contact-card-number{display:grid;width:42px;height:42px;place-items:center;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:rgba(255,255,255,.12);font-size:.68rem;font-weight:900}
+.contact-card-map .contact-card-number{border-color:rgba(7,52,95,.25);background:rgba(255,255,255,.38)}
+.contact-links .contact-card-icon{position:absolute;right:24px;top:23px;display:grid;width:52px;height:52px;place-items:center;border-radius:18px;background:rgba(255,255,255,.17);font-size:1.35rem;font-weight:900;transform:translateZ(18px) rotate(-5deg);transition:transform .3s ease}
+.contact-links .contact-card:hover .contact-card-icon,.contact-links .contact-card:focus-visible .contact-card-icon{transform:translateZ(28px) rotate(6deg) scale(1.08)}
+.contact-links .contact-facebook{font:800 1.9rem/1 Arial,sans-serif}
+.contact-links .contact-card>div{display:grid;grid-column:1/-1;align-self:end;transform:translateZ(15px)}
+.contact-links .contact-card small{margin-bottom:8px;color:currentColor;font-size:.66rem;letter-spacing:.15em;opacity:.72}
+.contact-links .contact-card strong{max-width:90%;color:currentColor;font:700 clamp(1.25rem,2vw,1.75rem)/1.12 "Fredoka",sans-serif}
+.contact-links .contact-card p{margin:9px 0 0;color:currentColor;font-size:.78rem;line-height:1.45;opacity:.72}
+.contact-links .contact-card>b{position:absolute;right:26px;bottom:24px;display:grid;width:38px;height:38px;place-items:center;border-radius:50%;background:rgba(255,255,255,.17);font-size:1.1rem;transition:transform .25s ease,background .25s ease}
+.contact-card-map>b{background:rgba(7,52,95,.1)!important}
+.contact-links .contact-card:hover>b,.contact-links .contact-card:focus-visible>b{background:#fff;color:var(--navy);transform:translate(4px,-4px)}
+@media(max-width:1000px){.contact-grid{grid-template-columns:.7fr 1.3fr;gap:45px}.contact-links .contact-card{min-height:225px;padding:23px}.contact-links .contact-card:hover,.contact-links .contact-card:focus-visible{padding-left:23px}.contact-links .contact-card-icon{right:20px;top:20px}}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr;gap:42px}.contact-copy{text-align:center}.contact-copy>p:not(.section-tag){margin-inline:auto}.contact-pulse{justify-content:center}.contact-card-grid{grid-template-columns:1fr}.contact-card-social{grid-column:auto}.contact-links .contact-card{min-height:205px}.contact-links .contact-card strong{font-size:1.45rem}.contact-orbit-two{right:-130px}}
+@media(max-width:430px){.contact-links .contact-card{min-height:190px;padding:21px}.contact-links .contact-card:hover,.contact-links .contact-card:focus-visible{padding-left:21px}.contact-links .contact-card-icon{right:18px;top:18px;width:46px;height:46px}.contact-links .contact-card p{max-width:82%}}
+@media(prefers-reduced-motion:reduce){.contact-orbit-one,.contact-pulse>span{animation:none}.contact-links .contact-card{transform:none!important}.contact-links .contact-card-icon{transform:none}}

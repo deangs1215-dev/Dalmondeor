@@ -348,4 +348,26 @@ if (aboutImageCarousel) {
   aboutImageObserver.observe(aboutImageCarousel);
 }
 
+const contactCards = [...document.querySelectorAll('.contact-card')];
+const contactReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!contactReducedMotion) {
+  contactCards.forEach(card => {
+    card.addEventListener('pointermove', event => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      card.style.setProperty('--tilt-x', `${(0.5 - y) * 6}deg`);
+      card.style.setProperty('--tilt-y', `${(x - 0.5) * 7}deg`);
+      card.style.setProperty('--glow-x', `${x * 100}%`);
+      card.style.setProperty('--glow-y', `${y * 100}%`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--tilt-x', '0deg');
+      card.style.setProperty('--tilt-y', '0deg');
+      card.style.setProperty('--glow-x', '50%');
+      card.style.setProperty('--glow-y', '50%');
+    });
+  });
+}
+
 document.getElementById('year').textContent = new Date().getFullYear();
