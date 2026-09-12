@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -54,7 +54,7 @@
     </div></section>
 
     <section class="section about" id="about"><div class="wrap about-grid">
-      <div class="about-media reveal"><div class="image-squircle"><img src="assets/learning-together.png?v=2" alt="A Dalmondeor teacher helping learners with a hands-on classroom project" loading="lazy"></div><div class="round-stamp"><span aria-hidden="true"></span><strong>Dalmondeor<small>We are the future</small></strong></div><div class="mini-note"><b>Curious minds</b><span>grow here every day.</span></div><span class="doodle-flower" aria-hidden="true">✿</span></div>
+      <div class="about-media reveal"><div class="image-squircle about-image-carousel" role="region" aria-roledescription="carousel" aria-label="Growing minds learning gallery" tabindex="0"><div class="about-image-slides" aria-live="polite"><img class="about-image-slide is-active" src="assets/learning-together.png?v=2" alt="A Dalmondeor teacher helping learners with a hands-on classroom project" loading="lazy" aria-hidden="false"><img class="about-image-slide" src="assets/about-chess.png" alt="A Dalmondeor learner enjoying a game of chess" loading="lazy" aria-hidden="true"><img class="about-image-slide about-image-slide--robotics" src="assets/about-robotics.png" alt="Dalmondeor learners building a robotics project together" loading="lazy" aria-hidden="true"><img class="about-image-slide" src="assets/about-reading.png" alt="Dalmondeor learners reading together in the school library" loading="lazy" aria-hidden="true"></div><div class="about-image-dots" aria-label="Choose a growing minds image"><button class="is-active" type="button" aria-label="Show classroom project" aria-pressed="true"></button><button type="button" aria-label="Show chess" aria-pressed="false"></button><button type="button" aria-label="Show robotics" aria-pressed="false"></button><button type="button" aria-label="Show library reading" aria-pressed="false"></button></div></div><div class="round-stamp"><span aria-hidden="true"></span><strong>Dalmondeor<small>We are the future</small></strong></div><div class="mini-note"><b>Curious minds</b><span>grow here every day.</span></div><span class="doodle-flower" aria-hidden="true">✿</span></div>
       <div class="about-copy reveal"><p class="section-tag">Hello, Dallies!</p><h2>A school made for<br><em>growing minds.</em></h2><p class="intro">At Dalmondeor, learning is active, personal and full of possibility.</p><p>We bring strong academics together with genuine care, creative opportunities and a rich school life. Our learners build the skills—and the courage—to take their next step with confidence.</p><ul class="tick-list"><li><span>✓</span> Child-centred teaching</li><li><span>✓</span> Safe, welcoming environment</li><li><span>✓</span> Sport, culture and leadership</li><li><span>✓</span> Strong parent partnership</li></ul><a class="text-button" href="#learning">See how we learn <span>→</span></a></div>
     </div></section>
 
@@ -98,31 +98,59 @@
 
     <section class="marquee" aria-label="Dalmondeor values"><div class="marquee-track"><span>CURIOUS MINDS ✦ KIND HEARTS ✦ BRAVE VOICES ✦ STRONG ROOTS ✦ ACTIVE LEARNERS ✦</span><span aria-hidden="true">CURIOUS MINDS ✦ KIND HEARTS ✦ BRAVE VOICES ✦ STRONG ROOTS ✦ ACTIVE LEARNERS ✦</span></div></section>
 
-    <section class="section activities" id="activities"><div class="wrap">
-      <div class="activities-heading reveal"><div><p class="section-tag">Beyond the classroom</p><h2>More ways to<br><em>find your spark.</em></h2></div><p>Every learner deserves the chance to move, make, perform, lead and belong.</p></div>
-      <div class="activity-layout">
-        <article class="activity-feature sports-slider reveal" tabindex="0" aria-label="School activities gallery">
-          <div class="sports-slides">
-            <img class="sports-slide active" src="assets/hockey-together.png?v=2" alt="Dalmondeor learners preparing for a field hockey match" loading="lazy">
-            <img class="sports-slide" src="assets/sports-cricket.png?v=2" alt="Dalmondeor learners taking part in a cricket match" loading="lazy">
-            <img class="sports-slide" src="assets/sports-netball.png?v=1" alt="Dalmondeor learners playing netball" loading="lazy">
-            <img class="sports-slide" src="assets/sports-rugby.png?v=1" alt="Dalmondeor learners competing in a rugby match" loading="lazy">
-            <img class="sports-slide" src="assets/sports-athletics.png?v=1" alt="Dalmondeor learners racing on the athletics track" loading="lazy">
-            <img class="culture-slide" src="assets/music-choir.png?v=2" alt="Dalmondeor learners performing together on stage">
-            <img class="culture-slide" src="assets/culture-arts-achievement.png?v=1" alt="A Dalmondeor learner celebrating an arts achievement" loading="lazy">
-            <img class="culture-slide leadership-slide" src="assets/service-leadership.png?v=1" alt="Dalmondeor learner leaders gathered in the school courtyard">
-            <img class="culture-slide leadership-slide" src="assets/service-awards.png?v=2" alt="Dalmondeor learner leaders presenting at the school awards ceremony" loading="lazy">
+    <section class="section circle-gallery" id="activities" aria-labelledby="circle-gallery-title">
+      <div class="wrap">
+        <div class="circle-gallery-heading reveal"><div><p class="section-tag light">Activities in motion</p><h2 id="circle-gallery-title">Every moment.<br><em>A new story.</em></h2></div><p>Sport, culture and leadership come together in a flowing circle showcase of life at Dalmondeor.</p></div>
+        <div class="circle-carousel reveal" role="region" aria-roledescription="carousel" aria-label="Dalmondeor activities circle slideshow" tabindex="0">
+          <div class="circle-show-slides" aria-live="polite">
+            <figure class="circle-show-slide is-active" style="--slide-accent:#ffd929" aria-hidden="false">
+              <img src="assets/hockey-together.png?v=2" alt="Dalmondeor learners preparing for a field hockey match" loading="lazy">
+              <figcaption class="circle-copy"><span>Move together</span><h3>Sports</h3><p>Hockey</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#ff8d62" aria-hidden="true">
+              <img src="assets/music-choir.png?v=2" alt="Dalmondeor learners performing together on stage" loading="lazy">
+              <figcaption class="circle-copy"><span>Sing together</span><h3>Music &amp;<br>culture</h3><p>Choir</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#57c9dc" aria-hidden="true">
+              <img src="assets/sports-cricket.png?v=2" alt="Dalmondeor learners taking part in a cricket match" loading="lazy">
+              <figcaption class="circle-copy"><span>Move together</span><h3>Sports</h3><p>Cricket</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#57c9dc" aria-hidden="true">
+              <img src="assets/service-leadership.png?v=1" alt="Dalmondeor learner leaders gathered in the school courtyard" loading="lazy">
+              <figcaption class="circle-copy"><span>Lead together</span><h3>Service &amp;<br>leadership</h3><p>Learner leaders</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#ff8d62" aria-hidden="true">
+              <img src="assets/sports-netball.png?v=1" alt="Dalmondeor learners playing netball" loading="lazy">
+              <figcaption class="circle-copy"><span>Move together</span><h3>Sports</h3><p>Netball</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#ffd929" aria-hidden="true">
+              <img src="assets/culture-arts-achievement.png?v=1" alt="A Dalmondeor learner celebrating an arts achievement" loading="lazy">
+              <figcaption class="circle-copy"><span>Create together</span><h3>Music &amp;<br>culture</h3><p>Creative arts</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#ffd929" aria-hidden="true">
+              <img src="assets/sports-rugby.png?v=1" alt="Dalmondeor learners competing in a rugby match" loading="lazy">
+              <figcaption class="circle-copy"><span>Move together</span><h3>Sports</h3><p>Rugby</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#56c7a9" aria-hidden="true">
+              <img src="assets/service-awards.png?v=2" alt="Dalmondeor learner leaders presenting at the school awards ceremony" loading="lazy">
+              <figcaption class="circle-copy"><span>Lead together</span><h3>Service &amp;<br>leadership</h3><p>Awards &amp; achievement</p></figcaption>
+            </figure>
+            <figure class="circle-show-slide" style="--slide-accent:#56c7a9" aria-hidden="true">
+              <img src="assets/sports-athletics.png?v=1" alt="Dalmondeor learners racing on the athletics track" loading="lazy">
+              <figcaption class="circle-copy"><span>Move together</span><h3>Sports</h3><p>Athletics</p></figcaption>
+            </figure>
           </div>
-          <div class="activity-overlay"><span>01</span><div><small id="activity-kicker">Move together</small><h3 id="activity-title">Sports</h3></div><b>↗</b></div>
-          <div class="sports-dots" aria-label="Sports image selector"><button class="active" type="button" aria-label="Show hockey image" aria-pressed="true"></button><button type="button" aria-label="Show cricket image" aria-pressed="false"></button><button type="button" aria-label="Show netball image" aria-pressed="false"></button><button type="button" aria-label="Show rugby image" aria-pressed="false"></button><button type="button" aria-label="Show athletics image" aria-pressed="false"></button></div>
-        </article>
-        <div class="activity-cards">
-          <article class="activity-card art reveal activity-trigger is-active" data-activity-mode="sports" tabindex="0" role="button" aria-label="Show Sports"><span class="blob-icon">●</span><small>02 • Play</small><h3>Sports</h3><p>Move, compete and grow together.</p><b>↗</b></article>
-          <article class="activity-card music reveal activity-trigger" data-activity-mode="culture" tabindex="0" role="button" aria-label="Show Music and culture"><span class="blob-icon">♫</span><small>03 • Perform</small><h3>Music &amp; culture</h3><p>Finding rhythm, confidence and a voice.</p><b>↗</b></article>
-          <article class="activity-card lead reveal activity-trigger" data-activity-mode="leadership" tabindex="0" role="button" aria-label="Show Service and leadership"><span class="blob-icon">★</span><small>04 • Lead</small><h3>Service &amp; leadership</h3><p>Small acts that shape strong character.</p><b>↗</b></article>
+          <div class="circle-carousel-count" aria-hidden="true"><strong>01</strong><span>/ 09</span></div>
+          <div class="circle-carousel-controls">
+            <button class="circle-prev" type="button" aria-label="Show previous activity">←</button>
+            <div class="circle-dots" aria-label="Choose an activity image">
+              <button class="is-active" type="button" aria-label="Show hockey" aria-pressed="true"></button><button type="button" aria-label="Show choir" aria-pressed="false"></button><button type="button" aria-label="Show cricket" aria-pressed="false"></button><button type="button" aria-label="Show learner leadership" aria-pressed="false"></button><button type="button" aria-label="Show netball" aria-pressed="false"></button><button type="button" aria-label="Show creative arts" aria-pressed="false"></button><button type="button" aria-label="Show rugby" aria-pressed="false"></button><button type="button" aria-label="Show awards and achievement" aria-pressed="false"></button><button type="button" aria-label="Show athletics" aria-pressed="false"></button>
+            </div>
+            <button class="circle-next" type="button" aria-label="Show next activity">→</button>
+          </div>
         </div>
       </div>
-    </div></section>
+    </section>
 
     <section class="section campus-film" id="campus-video" aria-labelledby="campus-video-title">
       <div class="wrap">
@@ -155,9 +183,9 @@
           <div class="facebook-feed-frame">
             <iframe
               title="Latest posts from the Dalmondeor Dallies Facebook page"
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDalmondeorDallies%2F&amp;tabs=timeline&amp;width=500&amp;height=650&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId"
-              width="500"
-              height="650"
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDalmondeorDallies%2F&amp;tabs=timeline&amp;width=620&amp;height=720&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId"
+              width="620"
+              height="720"
               scrolling="no"
               frameborder="0"
               allowfullscreen
@@ -171,7 +199,7 @@
     </section>
 
     <section class="section why" id="parents"><div class="wrap why-grid">
-      <div class="why-copy reveal"><p class="section-tag light">Why families choose us</p><h2>One school.<br><em>A whole community.</em></h2><div class="why-accordion"><details open><summary><span>01</span>Teaching that sees the child<b>+</b></summary><p>Clear expectations, personal attention and learning designed to build confidence as well as knowledge.</p></details><details><summary><span>02</span>A place to feel at home<b>+</b></summary><p>Our school culture is grounded in respect, belonging and partnership with families.</p></details><details><summary><span>03</span>Growth beyond academics<b>+</b></summary><p>Sport, culture, creativity and leadership help every learner discover their strengths.</p></details></div></div>
+      <div class="why-copy reveal"><p class="section-tag light">Why families choose us</p><h2>One school.<br><em>A whole community.</em></h2><div class="why-accordion"><details open><summary><span>01</span>Teaching that sees the child<b>+</b></summary><p>Clear expectations, personal attention and purposeful learning create an environment where every learner can thrive. We focus on building strong foundations in knowledge and skills while nurturing confidence, independence and a genuine enthusiasm for learning.</p></details><details><summary><span>02</span>A place to feel at home<b>+</b></summary><p>More than just a school, we strive to create a place where every learner feels they belong. Built on respect, care and strong partnerships with families, our community provides a safe, welcoming environment where children feel valued, supported and confident to be themselves.</p></details><details><summary><span>03</span>Growth beyond academics<b>+</b></summary><p>Sport, culture, creativity and leadership give every learner the opportunity to discover their strengths, build confidence and develop skills beyond the classroom. Through teamwork, participation and new experiences, learners are encouraged to grow into well-rounded, confident individuals.</p></details></div></div>
       <div class="why-stats reveal"><div class="stat-orbit"><div><strong data-count="8">0</strong><span>Learning years<br>Grade R–7</span></div></div><div class="stat-card yellow"><strong data-count="3">0</strong><span>School phases</span><i>✦</i></div><div class="stat-card coral"><strong data-count="1">0</strong><span>Dallies family</span><i>♥</i></div><div class="stat-card blue"><strong data-count="100">0</strong><span>Reasons to grow</span><i>★</i></div></div>
     </div></section>
 
@@ -188,6 +216,6 @@
   </main>
 
   <footer class="footer"><div class="wrap footer-main"><div class="footer-name"><span>DALMONDEOR</span><p>Ons is die toekoms.<br>We are the future.</p></div><div class="footer-nav"><a href="#about">Our school</a><a href="#learning">Learning</a><a href="#activities">Activities</a><a href="#admissions">Admissions</a></div><a class="back-top" href="#top" aria-label="Back to top">↑</a></div><div class="wrap footer-bottom"><p>© <span id="year"></span> Laerskool Dalmondeor Primary</p><p>Mondeor • Johannesburg South</p></div></footer>
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=14"></script>
 </body>
 </html>

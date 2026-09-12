@@ -108,116 +108,6 @@ document.querySelectorAll('details').forEach(item => item.addEventListener('togg
   [...group.children].filter(other => other.tagName === 'DETAILS' && other !== item).forEach(other => other.open = false);
 }));
 
-const sportsSlider = document.querySelector('.sports-slider');
-const sportsSlides = [...document.querySelectorAll('.sports-slide')];
-const sportsDots = [...document.querySelectorAll('.sports-dots button')];
-const cultureSlides = [...document.querySelectorAll('.culture-slide:not(.leadership-slide)')];
-const leadershipSlides = [...document.querySelectorAll('.leadership-slide')];
-const activityKicker = document.getElementById('activity-kicker');
-const activityTitle = document.getElementById('activity-title');
-const activityTriggers = [...document.querySelectorAll('.activity-trigger')];
-let sportsIndex = 0;
-let cultureIndex = 0;
-let leadershipIndex = 0;
-let activitySequenceIndex = 0;
-let activityTimer;
-const activitySequence = [];
-let cultureSequenceIndex = 0;
-let leadershipSequenceIndex = 0;
-
-// Keep the rhythm at two sports photos followed by one culture or leadership photo,
-// while ensuring every sports image gets an equal turn in the rotation.
-for (let group = 0; group < sportsSlides.length * 2; group += 1) {
-  const firstSportsIndex = (group * 2) % sportsSlides.length;
-  const interlude = group % 2 === 0
-    ? { mode: 'culture', cultureIndex: cultureSequenceIndex++ % cultureSlides.length }
-    : { mode: 'leadership', leadershipIndex: leadershipSequenceIndex++ % leadershipSlides.length };
-  activitySequence.push(
-    { mode: 'sports', sportsIndex: firstSportsIndex },
-    { mode: 'sports', sportsIndex: (firstSportsIndex + 1) % sportsSlides.length },
-    interlude
-  );
-}
-
-function showSportsSlide(index) {
-  sportsIndex = (index + sportsSlides.length) % sportsSlides.length;
-  sportsSlides.forEach((slide, i) => slide.classList.toggle('active', i === sportsIndex));
-  sportsDots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === sportsIndex);
-    dot.setAttribute('aria-pressed', String(i === sportsIndex));
-  });
-}
-
-function highlightActivity(mode) {
-  activityTriggers.forEach(trigger => {
-    const selected = trigger.dataset.activityMode === mode;
-    trigger.classList.toggle('is-active', selected);
-    trigger.setAttribute('aria-pressed', String(selected));
-  });
-}
-
-function showActivityMode(mode, selectedSportsIndex = sportsIndex, selectedLeadershipIndex = leadershipIndex, selectedCultureIndex = cultureIndex) {
-  const showCulture = mode === 'culture';
-  const showLeadership = mode === 'leadership';
-  const showSports = mode === 'sports';
-  sportsSlider?.classList.toggle('culture-mode', !showSports);
-  if (showCulture && cultureSlides.length) {
-    cultureIndex = (selectedCultureIndex + cultureSlides.length) % cultureSlides.length;
-  }
-  cultureSlides.forEach((slide, index) => slide.classList.toggle('active', showCulture && index === cultureIndex));
-  if (showLeadership && leadershipSlides.length) {
-    leadershipIndex = (selectedLeadershipIndex + leadershipSlides.length) % leadershipSlides.length;
-  }
-  leadershipSlides.forEach((slide, index) => slide.classList.toggle('active', showLeadership && index === leadershipIndex));
-  highlightActivity(mode);
-
-  if (!showSports) {
-    sportsSlides.forEach(slide => slide.classList.remove('active'));
-    if (activityKicker) activityKicker.textContent = showCulture ? 'Sing together' : 'Lead together';
-    if (activityTitle) activityTitle.textContent = showCulture ? 'Music & culture' : 'Service & leadership';
-    return;
-  }
-
-  if (activityKicker) activityKicker.textContent = 'Move together';
-  if (activityTitle) activityTitle.textContent = 'Sports';
-  showSportsSlide(selectedSportsIndex);
-}
-
-function showActivitySequenceStep(index) {
-  activitySequenceIndex = (index + activitySequence.length) % activitySequence.length;
-  const step = activitySequence[activitySequenceIndex];
-  showActivityMode(step.mode, step.sportsIndex, step.leadershipIndex, step.cultureIndex);
-}
-
-function startActivityRotation() {
-  clearInterval(activityTimer);
-  activityTimer = setInterval(() => showActivitySequenceStep(activitySequenceIndex + 1), 4000);
-}
-
-sportsDots.forEach((dot, index) => dot.addEventListener('click', () => {
-  const matchingStep = activitySequence.findIndex(step => step.mode === 'sports' && step.sportsIndex === index);
-  if (matchingStep >= 0) activitySequenceIndex = matchingStep;
-  showActivityMode('sports', index);
-  startActivityRotation();
-}));
-sportsSlider?.addEventListener('mouseenter', () => clearInterval(activityTimer));
-sportsSlider?.addEventListener('mouseleave', startActivityRotation);
-sportsSlider?.addEventListener('focusin', () => clearInterval(activityTimer));
-sportsSlider?.addEventListener('focusout', startActivityRotation);
-activityTriggers.forEach(trigger => {
-  const mode = trigger.dataset.activityMode;
-  const showSelectedMode = () => {
-    clearInterval(activityTimer);
-    showActivityMode(mode);
-  };
-  trigger.addEventListener('mouseenter', showSelectedMode);
-  trigger.addEventListener('focusin', showSelectedMode);
-  trigger.addEventListener('mouseleave', startActivityRotation);
-  trigger.addEventListener('focusout', startActivityRotation);
-});
-showActivitySequenceStep(0);
-startActivityRotation();
-
 const teamCarousel = document.querySelector('.team-carousel');
 const teamStage = document.querySelector('.team-stage');
 const teamCards = [...document.querySelectorAll('.team-card')];
@@ -327,5 +217,135 @@ if (campusVideo) {
   playCampusVideoWithSound();
 }
 campusSoundStart?.addEventListener('click', playCampusVideoWithSound);
+
+const circleCarousel = document.querySelector('.circle-carousel');
+const circleShowSlides = [...document.querySelectorAll('.circle-show-slide')];
+const circleDots = [...document.querySelectorAll('.circle-dots button')];
+const circleCount = document.querySelector('.circle-carousel-count strong');
+const circlePrev = document.querySelector('.circle-prev');
+const circleNext = document.querySelector('.circle-next');
+let circleIndex = 0;
+let circleTimer;
+let circleInView = false;
+let circleCleanupTimer;
+const circleReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function showCircleSlide(index) {
+  if (!circleShowSlides.length) return;
+  const nextIndex = (index + circleShowSlides.length) % circleShowSlides.length;
+  if (nextIndex === circleIndex && circleShowSlides[nextIndex].classList.contains('is-active')) return;
+  const outgoing = circleShowSlides[circleIndex];
+  clearTimeout(circleCleanupTimer);
+  outgoing?.classList.remove('is-active');
+  outgoing?.classList.add('is-leaving');
+  outgoing?.setAttribute('aria-hidden', 'true');
+  circleIndex = nextIndex;
+  const incoming = circleShowSlides[circleIndex];
+  incoming.classList.remove('is-leaving');
+  incoming.classList.add('is-active');
+  incoming.setAttribute('aria-hidden', 'false');
+  circleDots.forEach((dot, dotIndex) => {
+    const selected = dotIndex === circleIndex;
+    dot.classList.toggle('is-active', selected);
+    dot.setAttribute('aria-pressed', String(selected));
+  });
+  if (circleCount) circleCount.textContent = String(circleIndex + 1).padStart(2, '0');
+  circleCleanupTimer = setTimeout(() => outgoing?.classList.remove('is-leaving'), circleReducedMotion ? 0 : 1200);
+}
+
+function startCircleCarousel() {
+  clearInterval(circleTimer);
+  if (circleInView && !circleReducedMotion && circleShowSlides.length > 1) {
+    circleTimer = setInterval(() => showCircleSlide(circleIndex + 1), 5000);
+  }
+}
+
+function selectCircleSlide(index) {
+  showCircleSlide(index);
+  startCircleCarousel();
+}
+
+circlePrev?.addEventListener('click', () => selectCircleSlide(circleIndex - 1));
+circleNext?.addEventListener('click', () => selectCircleSlide(circleIndex + 1));
+circleDots.forEach((dot, index) => dot.addEventListener('click', () => selectCircleSlide(index)));
+circleCarousel?.addEventListener('mouseenter', () => clearInterval(circleTimer));
+circleCarousel?.addEventListener('mouseleave', startCircleCarousel);
+circleCarousel?.addEventListener('focusin', () => clearInterval(circleTimer));
+circleCarousel?.addEventListener('focusout', event => {
+  if (!circleCarousel.contains(event.relatedTarget)) startCircleCarousel();
+});
+circleCarousel?.addEventListener('keydown', event => {
+  if (event.key === 'ArrowLeft') selectCircleSlide(circleIndex - 1);
+  if (event.key === 'ArrowRight') selectCircleSlide(circleIndex + 1);
+});
+if (circleCarousel) {
+  const circleObserver = new IntersectionObserver(entries => {
+    circleInView = entries[0].isIntersecting;
+    if (circleInView) startCircleCarousel();
+    else clearInterval(circleTimer);
+  }, { threshold: .3 });
+  circleObserver.observe(circleCarousel);
+}
+
+const aboutImageCarousel = document.querySelector('.about-image-carousel');
+const aboutImageSlides = [...document.querySelectorAll('.about-image-slide')];
+const aboutImageDots = [...document.querySelectorAll('.about-image-dots button')];
+let aboutImageIndex = 0;
+let aboutImageTimer;
+let aboutImageInView = false;
+let aboutImageCleanupTimer;
+const aboutImageReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function showAboutImage(index) {
+  if (!aboutImageSlides.length) return;
+  const nextIndex = (index + aboutImageSlides.length) % aboutImageSlides.length;
+  if (nextIndex === aboutImageIndex && aboutImageSlides[nextIndex].classList.contains('is-active')) return;
+  const outgoing = aboutImageSlides[aboutImageIndex];
+  clearTimeout(aboutImageCleanupTimer);
+  outgoing?.classList.remove('is-active');
+  outgoing?.classList.add('is-leaving');
+  outgoing?.setAttribute('aria-hidden', 'true');
+  aboutImageIndex = nextIndex;
+  const incoming = aboutImageSlides[aboutImageIndex];
+  incoming.classList.remove('is-leaving');
+  incoming.classList.add('is-active');
+  incoming.setAttribute('aria-hidden', 'false');
+  aboutImageDots.forEach((dot, dotIndex) => {
+    const selected = dotIndex === aboutImageIndex;
+    dot.classList.toggle('is-active', selected);
+    dot.setAttribute('aria-pressed', String(selected));
+  });
+  aboutImageCleanupTimer = setTimeout(() => outgoing?.classList.remove('is-leaving'), aboutImageReducedMotion ? 0 : 1100);
+}
+
+function startAboutImageCarousel() {
+  clearInterval(aboutImageTimer);
+  if (aboutImageInView && !aboutImageReducedMotion && aboutImageSlides.length > 1) {
+    aboutImageTimer = setInterval(() => showAboutImage(aboutImageIndex + 1), 4500);
+  }
+}
+
+aboutImageDots.forEach((dot, index) => dot.addEventListener('click', () => {
+  showAboutImage(index);
+  startAboutImageCarousel();
+}));
+aboutImageCarousel?.addEventListener('mouseenter', () => clearInterval(aboutImageTimer));
+aboutImageCarousel?.addEventListener('mouseleave', startAboutImageCarousel);
+aboutImageCarousel?.addEventListener('focusin', () => clearInterval(aboutImageTimer));
+aboutImageCarousel?.addEventListener('focusout', event => {
+  if (!aboutImageCarousel.contains(event.relatedTarget)) startAboutImageCarousel();
+});
+aboutImageCarousel?.addEventListener('keydown', event => {
+  if (event.key === 'ArrowLeft') showAboutImage(aboutImageIndex - 1);
+  if (event.key === 'ArrowRight') showAboutImage(aboutImageIndex + 1);
+});
+if (aboutImageCarousel) {
+  const aboutImageObserver = new IntersectionObserver(entries => {
+    aboutImageInView = entries[0].isIntersecting;
+    if (aboutImageInView) startAboutImageCarousel();
+    else clearInterval(aboutImageTimer);
+  }, { threshold: .35 });
+  aboutImageObserver.observe(aboutImageCarousel);
+}
 
 document.getElementById('year').textContent = new Date().getFullYear();
